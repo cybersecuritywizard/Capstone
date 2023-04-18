@@ -11,7 +11,7 @@
         <div class="container">
           <h5>NEW PRODUCTS</h5>
           <h1><span>Best Prices</span> This Season</h1>
-          <p>CABY Cosmetics offers the best products for the most affordable prices</p>
+          <p>PMY Cosmetics offers the best products for the most affordable prices</p>
           <button>Shop Now</button>
         </div>
       </section>
