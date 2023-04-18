@@ -5,10 +5,8 @@ phases:
     commands:
       - echo Installing Docker
       - yum update -y
-      - amazon-linux-extras install docker
+      - yum install install docker
       - service docker start
-      - usermod -a -G docker ec2-user
-      - newgrp docker
       - echo Installing SonarScanner and conduing SAST
       - curl -L https://github.com/SonarSource/sonar-scanner-cli/releases/download/4.6.2.2472/sonar-scanner-cli-4.6.2.2472-linux.zip -o sonar-scanner.zip
       - unzip sonar-scanner.zip
