@@ -4,7 +4,7 @@ phases:
   install:
     runtime-versions:
       php: 8.1
-      docker: 18
+      docker: 20
   pre_build:
     commands:
       - echo Installing Docker
