@@ -5,7 +5,7 @@ phases:
     commands:
       - echo Installing Docker
       - yum update -y
-      - yum install install docker
+      - yum install -y docker
       - service docker start
       - echo Installing SonarScanner and conduing SAST
       - curl -L https://github.com/SonarSource/sonar-scanner-cli/releases/download/4.6.2.2472/sonar-scanner-cli-4.6.2.2472-linux.zip -o sonar-scanner.zip
