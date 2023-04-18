@@ -26,5 +26,5 @@ phases:
   post_build:
     commands:
       - echo Running ZAP Full Scan with Ajax Spider for conducting DAST
-      - docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-full-scan.py -t http://3.12.136.142 -g gen.conf -r report.html -d -j
+      - docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-full-scan.py -t http://3.12.136.142 -r report.html -d
       - aws s3 cp report.html s3://devopsbucketstorage/Reports/OWASP_ZAP_Report_$(date +"%Y-%m-%d-%H-%M-%S").html
