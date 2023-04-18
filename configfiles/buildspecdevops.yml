@@ -6,12 +6,12 @@ phases:
       php: 8.1
     commands:
       - yum update -y
-      - yum install -y openssh-clients
+
   build:
     commands:
       - echo Deploying Code to WebServer
       - aws s3 cp s3://devopsbucketstorage/Keys/DevOps_Key.pem .
       - chmod 400 DevOps_Key.pem
-      - scp -i DevOps_Key.pem -o StrictHostKeyChecking=no -r ./Web_Server/* ubuntu@3.12.136.142:/home/ubuntu/Web_Server
-      - ssh -i DevOps_Key.pem ubuntu@3.12.136.142 'sudo /home/ubuntu/copy_to_server.sh'
+      - scp -i DevOps_Key.pem -o StrictHostKeyChecking=no -r ./Web_Server/* ubuntu@3.12.136.142:/Web_Server
+      - ssh -i DevOps_Key.pem ubuntu@3.12.136.142 'sudo ./copy_to_server.sh'
 
