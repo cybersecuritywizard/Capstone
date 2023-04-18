@@ -5,10 +5,10 @@ phases:
     runtime-versions:
       php: 8.1
     commands:
-      - apt-get update
-      - apt-get install -y ssh
+      - yum update -y
+      - yum install -y openssh-clients
   build:
     commands:
       - aws s3 cp s3://devopsbucketstorage/Keys/DevOps_Key.pem .
       - chmod 400 DevOps_Key.pem
-      - scp -i DevOps_Key.pem -o StrictHostKeyChecking=no -r ./Web_Server/* ubuntu@3.12.136.142:/var/www/html/
+      - scp -i DevOps_Key.pem -o StrictHostKeyChecking=no -r ./Web_Server/. ubuntu@3.12.136.142:/var/www/html/
