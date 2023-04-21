@@ -30,8 +30,7 @@ phases:
         set +e # disable the 'exit immediately on error' option
         docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-full-scan.py  -t http://3.12.136.142 -g gen.conf -r report.html
         if [ $? -ne 0 ]; then # check if the docker command failed
-          echo "Build failed with error: $?"
-          exit 0 # set the exit code to 1 to indicate a build failure
+          exit 0 
         fi
         set -e # enable the 'exit immediately on error' option
       - aws s3 cp report.txt s3://devopsbucketstorage/Reports/OWASP_ZAP_Report_$(date +"%Y-%m-%d-%H-%M-%S").txt
