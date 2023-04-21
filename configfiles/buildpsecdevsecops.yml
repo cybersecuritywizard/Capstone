@@ -33,4 +33,4 @@ phases:
           exit 0 
         fi
         set -e # enable the 'exit immediately on error' option
-      - aws s3 cp report.txt s3://devopsbucketstorage/Reports/OWASP_ZAP_Report_$(date +"%Y-%m-%d-%H-%M-%S").txt
+      - aws s3 cp report.html s3://devopsbucketstorage/Reports/OWASP_ZAP_Report_$(date +"%Y-%m-%d-%H-%M-%S").html
