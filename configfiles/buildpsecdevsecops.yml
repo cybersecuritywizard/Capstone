@@ -5,35 +5,33 @@ phases:
     runtime-versions:
       php: 8.1
       docker: 20
+  pre_build:
+    commands:
+      - echo Installing Docker
+      - yum update -y
+      #- echo Installing SonarScanner and conducting SAST
+      #- curl -L https://github.com/SonarSource/sonar-scanner-cli/releases/download/4.6.2.2472/sonar-scanner-cli-4.6.2.2472-linux.zip -o sonar-scanner.zip
+      #- unzip sonar-scanner.zip
+      #- export PATH=$PATH:$PWD/sonar-scanner-4.6.2.2472-linux/bin/
+      #- sonar-scanner -Dsonar.host.url=<your-sonarqube-url> -Dsonar.login=<your-sonarqube-login-token>
 
-pre_build:
-  commands:
-    - echo Installing Docker
-    - yum update -y
-    #- echo Installing SonarScanner and conducting SAST
-    #- curl -L https://github.com/SonarSource/sonar-scanner-cli/releases/download/4.6.2.2472/sonar-scanner-cli-4.6.2.2472-linux.zip -o sonar-scanner.zip
-    #- unzip sonar-scanner.zip
-    #- export PATH=$PATH:$PWD/sonar-scanner-4.6.2.2472-linux/bin/
-    #- sonar-scanner -Dsonar.host.url=<your-sonarqube-url> -Dsonar.login=<your-sonarqube-login-token>
-
-build:
-  commands:
-    - echo Deploying Code to WebServer
-    - aws s3 cp s3://devopsbucketstorage/Keys/DevOps_Key.pem .
-    - chmod 400 DevOps_Key.pem
-    - scp -i DevOps_Key.pem -o StrictHostKeyChecking=no -r ./Web_Server/* ubuntu@3.12.136.142:./Web_Server
-    - ssh -i DevOps_Key.pem ubuntu@3.12.136.142 'sudo ./copy_to_server.sh'
-    - echo Running ZAP Full Scan with Ajax Spider for conducting DAST
-    - |
-      set +e # disable the 'exit immediately on error' option
-      docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-full-scan.py  -t http://3.12.136.142 -g gen.conf -r report.html
-      if [ $? -ne 0 ]; then # check if the docker command failed
-        echo "Build failed with error: $?"
-        exit 1 # set the exit code to 1 to indicate a build failure
-      fi
-      set -e # enable the 'exit immediately on error' option
-
-post_build:
-  commands:
-    - echo Uploading ZAP Report to S3
-    - aws s3 cp report.txt s3://devopsbucketstorage/Reports/OWASP_ZAP_Report_$(date +"%Y-%m-%d-%H-%M-%S").txt
+  build:
+    commands
+      - echo Deploying Code to WebServer
+      - aws s3 cp s3://devopsbucketstorage/Keys/DevOps_Key.pem .
+      - chmod 400 DevOps_Key.pem
+      - scp -i DevOps_Key.pem -o StrictHostKeyChecking=no -r ./Web_Server/* ubuntu@3.12.136.142:./Web_Server
+      - ssh -i DevOps_Key.pem ubuntu@3.12.136.142 'sudo ./copy_to_server.sh'
+  
+  post_build:
+    commands:
+      - echo Running ZAP Full Scan with Ajax Spider for conducting DAST
+      - |
+        set +e # disable the 'exit immediately on error' option
+        docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-full-scan.py  -t http://3.12.136.142 -g gen.conf -r report.html
+        if [ $? -ne 0 ]; then # check if the docker command failed
+          echo "Build failed with error: $?"
+          exit 1 # set the exit code to 1 to indicate a build failure
+        fi
+        set -e # enable the 'exit immediately on error' option
+      - aws s3 cp report.txt s3://devopsbucketstorage/Reports/OWASP_ZAP_Report_$(date +"%Y-%m-%d-%H-%M-%S").txt
