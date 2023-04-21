@@ -28,8 +28,8 @@ session_start();
     <!--Navbar-->
     <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 fixed-top">
         <div class="container">
-         <img class="logo" src="assets/imgs/LOGO.jpg" alt="logo"/>
-         <h2 class="brand">CABY Cosmetics</h2>
+         <img class="logo" src="assets/imgs/logo.png" alt="logo"/>
+         <h2 class="brand">PMY Cosmetics</h2>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
