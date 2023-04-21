@@ -29,8 +29,11 @@ phases:
       - |
         set +e # disable the 'exit immediately on error' option
         docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-full-scan.py  -t http://3.12.136.142 -c configfiles/tests.conf
-        if [ $? -ne 0 ]; then # check if the docker command failed
-          exit 0 
+        if [ $? -ne 0 ]; then 
+          if grep -q 'FAIL-NEW: 1' zap_report.txt; then # check if any new failures were detected
+          exit 1
+        else
+          exit 0  
         fi
         set -e # enable the 'exit immediately on error' option
       - #ls  
