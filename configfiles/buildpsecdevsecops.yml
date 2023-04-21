@@ -28,9 +28,10 @@ phases:
       - echo Running ZAP Full Scan with Ajax Spider for conducting DAST
       - |
         set +e # disable the 'exit immediately on error' option
-        docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-full-scan.py  -t http://3.12.136.142 -g gen.conf -r report.html
+        docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-full-scan.py -t http://3.12.136.142 -c configfiles/tests.conf -r report.html
         if [ $? -ne 0 ]; then # check if the docker command failed
           exit 0 
         fi
         set -e # enable the 'exit immediately on error' option
+      - ls  
       - aws s3 cp report.html s3://devopsbucketstorage/Reports/OWASP_ZAP_Report_$(date +"%Y-%m-%d-%H-%M-%S").html
