@@ -16,7 +16,7 @@ phases:
       #- sonar-scanner -Dsonar.host.url=<your-sonarqube-url> -Dsonar.login=<your-sonarqube-login-token>
 
   build:
-    commands
+    commands:
       - echo Deploying Code to WebServer
       - aws s3 cp s3://devopsbucketstorage/Keys/DevOps_Key.pem .
       - chmod 400 DevOps_Key.pem
