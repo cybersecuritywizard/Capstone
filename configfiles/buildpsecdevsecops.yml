@@ -13,7 +13,7 @@ phases:
       - cd Web_Server
       - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip
       - unzip sonar-scanner-cli-4.7.0.2747-linux.zip
-      - export PATH=$PATH:./sonar-scanner-cli-4.7.0.2747-linux.zip/bin/
+      - export PATH=$PATH:./sonar-scanner-cli-4.7.0.2747-linux/bin/
       - sonar-scanner \
         -Dsonar.projectKey=PMY-COSMETICS \
         -Dsonar.properties=scanner.properties \
