@@ -10,14 +10,10 @@ phases:
       - echo Installing Docker
       - yum update -y
       - echo Installing SonarScanner and conducting SAST
-      - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip
-      - unzip sonar-scanner-cli-4.7.0.2747-linux.zip
-      - export PATH=$PATH:./sonar-scanner-cli-4.7.0.2747-linux/bin/
-      - sonar-scanner \                           
-        -Dsonar.projectKey=PMY-COSMETICS \
-        -Dsonar.sources=. \
-        -Dsonar.host.url=http://3.142.246.193:9000 \
-        -Dsonar.token=sqp_d936b90e10fbb9eb9778f7a1387860dbe3407aaf
+      - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492-linux.zip
+      - unzip sonar-scanner-cli-3.3.0.1492-linux.zip
+      - export PATH=$PATH:./sonar-scanner-3.3.0.1492-linux/bin/
+      - sonar-scanner
       - cd ..
       - echo "STATIC ANALYIS IS DONE PLEASE GO to http://3.142.246.193:9000 to get your report"  
 
