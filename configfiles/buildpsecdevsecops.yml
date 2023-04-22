@@ -15,7 +15,6 @@ phases:
       - mv sonar-scanner-4.6.2.2472-linux /opt/sonar-scanner
       - chmod -R 775 /opt/sonar-scanner
       - /opt/sonar-scanner/bin/sonar-scanner -Dsonar.projectKey=PMY-COSMETICS -Dsonar.host.url=http://3.142.246.193:9000  -Dsonar.token=sqp_d936b90e10fbb9eb9778f7a1387860dbe3407aaf
-      - cd ..
       - echo "STATIC ANALYIS IS DONE PLEASE GO to http://3.142.246.193:9000 to get your report"  
 
   build:
