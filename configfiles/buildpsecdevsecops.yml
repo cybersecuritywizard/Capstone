@@ -10,9 +10,9 @@ phases:
       - echo Installing Docker
       - yum update -y
       - echo Installing SonarScanner and conducting SAST
-      - curl -L https://github.com/SonarSource/sonar-scanner-cli/releases/download/4.6.2.2472/sonar-scanner-cli-4.6.2.2472-linux.zip -o sonar-scanner.zip
-      - unzip sonar-scanner.zip
-      - export PATH=$PATH:$PWD/sonar-scanner-4.6.2.2472-linux/bin/
+      - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492-linux.zip
+      - unzip sonar-scanner-cli-3.3.0.1492-linux.zip
+      - export PATH=$PATH:./sonar-scanner-3.3.0.1492-linux/bin/
       - sonar-scanner -Dsonar.host.url=http://3.142.246.193:9000 -Dsonar.login=sqp_d936b90e10fbb9eb9778f7a1387860dbe3407aaf
 
   build:
