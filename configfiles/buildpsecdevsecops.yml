@@ -5,9 +5,9 @@ phases:
     runtime-versions:
       php: 8.1
       docker: 20
-      java: 11
   pre_build:
     commands:
+      - export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
       - echo Installing Docker
       - yum update -y
       - echo Installing SonarScanner and conducting SAST
