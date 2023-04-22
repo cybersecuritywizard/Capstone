@@ -13,6 +13,8 @@ phases:
       - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492-linux.zip
       - unzip sonar-scanner-cli-3.3.0.1492-linux.zip
       - export PATH=$PATH:./sonar-scanner-3.3.0.1492-linux/bin/
+      - rm /codebuild/output/src266124366/src/sonar-scanner-3.3.0.1492-linux/conf/sonar-scanner.properties
+      - cat sonar-project.properties > /codebuild/output/src266124366/src/sonar-scanner-3.3.0.1492-linux/conf/sonar-scanner.properties
       - sonar-scanner
       - cd ..
       - echo "STATIC ANALYIS IS DONE PLEASE GO to http://3.142.246.193:9000 to get your report"  
