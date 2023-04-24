@@ -25,7 +25,7 @@
           <div class="one col-lg-4 col-md-12 col-sm-12 p-0">
             <img class="img-fluid" src="assets/imgs/1.jpg"/>
             <div class="details">
-              <h2>Extreamely Awesome Fash Wash</h2>
+              <h2>Extreamely Awesome Lipsticks</h2>
               <button class="text-uppercase">Shop Now</button>
             </div>
           </div>
