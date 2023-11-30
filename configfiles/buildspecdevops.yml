@@ -12,6 +12,6 @@ phases:
       - echo Deploying Code to WebServer
       - aws s3 cp s3://devopsbucketstorage/Keys/DevOps_Key.pem .
       - chmod 400 DevOps_Key.pem
-      - scp -i DevOps_Key.pem -o StrictHostKeyChecking=no -r ./Web_Server/* ubuntu@13.59.252.207:./Web_Server
+      - scp -i DevOps_Key.pem -o StrictHostKeyChecking=no -r ./Web_Server/* ubuntu@13.59.252.207:./Webserver
       - ssh -i DevOps_Key.pem ubuntu@13.59.252.207 'sudo ./copy_to_server.sh'
 
